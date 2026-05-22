@@ -50,4 +50,4 @@ const expenses = [
   { id: 49, title: "Sandwich", category: "Food", date: "2025-03-25", amount: 6.0 }
 ];
 
-export default theExpenses;
+export default expenses;
