@@ -12,6 +12,7 @@ function renderExpenses(expenseData) {
     expenseContainer.innerHTML = "";
 
     // then, take our array of data, then render a card for each
+
     expenseData.forEach(
         (expense) => {
             expenseContainer.innerHTML += 
@@ -42,6 +43,17 @@ renderExpenses(expenses);
 expenseForm.addEventListener(
     "submit", // argument 1: the name/type of the enven (e.g submit, change, click -> these are HTML built-ins)
     function(event) {   //argument 2: the logic/function that should fire (with the event being passed to it by default)
+        
         event.preventDefault(); // event build-in; preventing default behavior on form basically means "Dont post data and dont reload"
-
+        
+        // lets grab all our input elements/values
+        const title = document.getElementById('title').value;
+        const amount = document.getElementById('amount').value;
+        const date = document.getElementById('date').value;
+        const category = document.getElementById('category').value;
+        
+        // lets write out our logic 'naively', and beef it up later
+        const newExpense = {
+            // if object property name & variable are the same, you can just {value} in
+        }
     });
