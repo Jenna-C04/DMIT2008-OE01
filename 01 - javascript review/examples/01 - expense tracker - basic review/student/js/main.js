@@ -54,15 +54,18 @@ expenseForm.addEventListener(
         const date = document.getElementById('date').value;
         const category = document.getElementById('category').value;
         
-        // lets write out our logic 'naively', and beef it up later
-        const newExpense = {
-            // if object property name & variable are the same, you can just {value} instead
-            id: expenses.length + 1,
-            title,
-            amount,
-            date,
-            category,
+        //make a new expens if all the feilds are present & amount is a number        
+        if (title && date && category && !isNaN(amount)){
+            const newExpense = {
+                // if object property name & variable are the same, you can just {value} instead
+                id: expenses.length + 1,
+                title,
+                amount,
+                date,
+                category,
+            }
         }
+
 
         expenses.push(newExpense);
 
