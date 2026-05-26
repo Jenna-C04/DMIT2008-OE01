@@ -39,6 +39,8 @@ function renderExpenses(expenseData) {
 // Call function to render
 renderExpenses(expenses);
 
+expenseForm.addEventListener("change", function (event) {console.log(event.target.value); });
+
 // Lets write all our code as inline first, then clean it up later
 expenseForm.addEventListener(
     "submit", // argument 1: the name/type of the enven (e.g submit, change, click -> these are HTML built-ins)
@@ -54,6 +56,15 @@ expenseForm.addEventListener(
         
         // lets write out our logic 'naively', and beef it up later
         const newExpense = {
-            // if object property name & variable are the same, you can just {value} in
+            // if object property name & variable are the same, you can just {value} instead
+            id: expenses.length + 1,
+            title,
+            amount,
+            date,
+            category,
         }
+
+        expenses.push(newExpense);
+
+        renderExpenses(expenses);
     });
