@@ -63,11 +63,11 @@ expenseForm.addEventListener(
                 amount,
                 date,
                 category,
-            }
+            };
+               
+            expenses.push(newExpense);
+            renderExpenses(expenses);
         }
 
-
-        expenses.push(newExpense);
-
-        renderExpenses(expenses);
+        expenseForm.reset();
     });
