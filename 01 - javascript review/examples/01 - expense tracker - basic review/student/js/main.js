@@ -3,7 +3,7 @@ import expenses from "./expense-data.js";
 
 // Grab relevant DOM elements
 const expenseContainer = document.getElementById('expense-container');
-const searchTerm = document.getElementById('searchbox');
+const searchBox = document.getElementById('searchbox');
 const expenseForm = document.getElementById('expense-form-add');
 
 // Render data
@@ -71,3 +71,19 @@ expenseForm.addEventListener(
 
         expenseForm.reset();
     });
+
+// let handle search filtration!
+//  + the search box element as an object (already done!)
+//  + attach an event listenter to change / input
+//  + somehow filter the cards (i.e the expense array) based on the text in the text box
+
+searchBox.addEventListener(
+    "input",
+    function(event) {
+        const searchTerm = event.target.value;
+        const filteredExpenses = expenses.filter(
+            (expense) => expense.title.toLocaleLowerCase().includes(searchTerm)
+        )
+        renderExpenses(filteredExpenses);
+    }
+);
