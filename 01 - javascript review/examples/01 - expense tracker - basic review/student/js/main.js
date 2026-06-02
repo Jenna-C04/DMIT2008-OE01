@@ -5,6 +5,7 @@ import expenses from "./expense-data.js";
 const expenseContainer = document.getElementById('expense-container');
 const searchBox = document.getElementById('searchbox');
 const expenseForm = document.getElementById('expense-form-add');
+const submitButton = document.getElementById('submitter');
 
 // Render data
 function renderExpenses(expenseData) {
@@ -55,21 +56,45 @@ expenseForm.addEventListener(
         const category = document.getElementById('category').value;
         
         //make a new expens if all the feilds are present & amount is a number        
-        if (title && date && category && !isNaN(amount)){
-            const newExpense = {
-                // if object property name & variable are the same, you can just {value} instead
-                id: expenses.length + 1,
-                title,
-                amount,
-                date,
-                category,
-            };
-               
-            expenses.push(newExpense);
-            renderExpenses(expenses);
+        // step 8 
+        if (submitButton.innerText === 'Add Expense') {
+            if (title && date && category && !isNaN(amount)){
+                const newExpense = {
+                    // if object property name & variable are the same, you can just {value} instead
+                    id: expenses.length + 1,
+                    title,
+                    amount,
+                    date,
+                    category,
+                };
+
+                expenses.push(newExpense);
+                renderExpenses(expenses);
+                
+                expenseForm.reset();
+            }
+        } else {
+            const expenseId = parseInt(document.getElementById('expense-id').value);
+            const expenseToEdit = expenses.find(    // Find the actual object
+                (expense) => expense.id === expenseId // We still want a matching id
+            );
+            //NOTE - when changing / reading data, always look at the data soruce, not the HTML
+            if(expenseToEdit){
+                // i am directly editing the element in the array in-place
+                expenseToEdit.title = title;
+                expenseToEdit.amount = amount;
+                expenseToEdit.date = date;
+                expenseToEdit.category = category;
+
+                // we changed data -> ui should re-render
+                renderExpenses(expenses);
+
+                //QOL clean up
+                submitButton.innerText = "Add Expense"
+
+            }
         }
 
-        expenseForm.reset();
     });
 
 // let handle search filtration!
@@ -117,10 +142,10 @@ expenseContainer.addEventListener(
 
             if (expenseToEdit) {
                 document.getElementById('title').value = expenseToEdit.title;
-                document.getElementById('amountdate').value = expenseToEdit.amountdate;
+                document.getElementById('amount').value = expenseToEdit.amount;
                 document.getElementById('date').value = expenseToEdit.date;
                 document.getElementById('category').value = expenseToEdit.category;
-                document.getElementById('id').value = expenseToEdit.id;
+                document.getElementById('expense-id').value = expenseToEdit.id;
 
                 // bonus QOL : change button text depending on what we're doing
                 document.getElementById('submitter').innerText = "Save";
