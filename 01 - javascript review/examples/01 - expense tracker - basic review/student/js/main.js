@@ -87,3 +87,44 @@ searchBox.addEventListener(
         renderExpenses(filteredExpenses);
     }
 );
+
+// Lets handle edititng / deleting
+expenseContainer.addEventListener(
+    "click", 
+    function(event) { 
+        // event.target will be exactly what got clicked within the container
+        // always the container itself
+        if(event.target.classList.contains("delete-btn")){
+            // get id of the expense card
+            const expenseId = parseInt(event.target.id);
+            // then find where the object is in the array
+            const expensIndex = expenses.findIndex(
+                (expense) => expense.id === expenseId
+            );
+            // Now we have the index! we can delete whats at that index in the array
+            if (expensIndex !== -1) {             // findIndex returned -1 if it cant find a matching item
+                expenses.splice(expensIndex, 1); // "starting at {expense index}, delete that thing"
+                renderExpenses(expenses)
+            }
+        } else if (event.target.classList.contains("edit-btn")){
+            // populate the form inputs w/ data from the element/card
+            //somehow figure out a way to save back to that element
+            // 1 + 2 get id of card
+            const expenseId = parseInt(event.target.id);
+            const expenseToEdit = expenses.find(    // Find the actual object
+                (expense) => expense.id === expenseId // We still want a matching id
+            );
+
+            if (expenseToEdit) {
+                document.getElementById('title').value = expenseToEdit.title;
+                document.getElementById('amountdate').value = expenseToEdit.amountdate;
+                document.getElementById('date').value = expenseToEdit.date;
+                document.getElementById('category').value = expenseToEdit.category;
+                document.getElementById('id').value = expenseToEdit.id;
+
+                // bonus QOL : change button text depending on what we're doing
+                document.getElementById('submitter').innerText = "Save";
+            }
+        }
+    }
+);
