@@ -3,12 +3,20 @@
 # Steps
 
 1. Create and Run the Next.js Project
-    Create the project
-    `npx create-next-app@latest components-example`
-    Go in to the folder
-    `cd components-example`
-    Run the project
-    `npm run dev`
+    - Create the project: `npx create-next-app@latest components-example`
+    - Settings:
+      - **no** TypeScript
+      - **no** linter
+      - **yes/no** React Compiler
+      - **no** tailwind
+      - **no** src directory (just keeps things simple atm)
+      - **no** AppRouter (for now)
+      - **no** custom import alias
+      - **no** agents
+      - overall: no to everything, or yes to just React Compiler
+      - You only have to config settings (globally) once; then you can just reuse
+    - Go in to the folder: `cd components-example`
+    - Run the project: `npm run dev`
 2. In the "index.js"
 - remove everything in the "main" tag except for the title ("h1").
     - change it to a title you're comfortable with.
