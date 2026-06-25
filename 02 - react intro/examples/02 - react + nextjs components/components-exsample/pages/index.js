@@ -1,7 +1,16 @@
+// this is our main file; it functionally replaces index.html
+
 import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+
+// my components
+import Hello from '@/components/Hello';
+import NewConcept from '@/components/NewConcept';
+import Container from "@/components/Container";
+// @ is the project root (see: jsonfig.json), so we don't have to write long annoying import paths
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +21,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 
 export default function Home() {
   return (
@@ -26,61 +36,13 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js logo"
-            width={100}
-            height={20}
-            priority
-          />
-          <div className={styles.intro}>
-            <h1>To get started, edit the index.js file.</h1>
-            <p>
-              Looking for a starting point or more instructions? Head over to{" "}
-              <a
-                href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Templates
-              </a>{" "}
-              or the{" "}
-              <a
-                href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learning
-              </a>{" "}
-              center.
-            </p>
-          </div>
-          <div className={styles.ctas}>
-            <a
-              className={styles.primary}
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.logo}
-                src="/vercel.svg"
-                alt="Vercel logomark"
-                width={16}
-                height={16}
-              />
-              Deploy Now
-            </a>
-            <a
-              className={styles.secondary}
-              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Documentation
-            </a>
-          </div>
+          <Container>
+            <Hello />
+            <NewConcept concept="creating and using components" >
+            </NewConcept>
+            <NewConcept concept="destructuring objects" />
+            <NewConcept concept="next.js and what it bundles & does" />
+          </Container>
         </main>
       </div>
     </>
