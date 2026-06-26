@@ -19,7 +19,9 @@ export default function Home() {
       >
         <main className={styles.main}>
           <Container maxWidth="sm">
-            we'll add some stuff later
+            <Box sm={{ my:4}}>
+              <Typography></Typography>
+            </Box>
           </Container>
         </main>
       </div>
