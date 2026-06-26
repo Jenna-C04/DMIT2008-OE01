@@ -2,6 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import Button from '@mui/material/Button'
+import Container from "@mui/material/Container";
 
 export default function Home() {
   return (
@@ -13,10 +15,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
+        className={`${styles.page}`}
       >
         <main className={styles.main}>
-          
+          <Container maxWidth="sm">
+            we'll add some stuff later
+          </Container>
         </main>
       </div>
     </>
