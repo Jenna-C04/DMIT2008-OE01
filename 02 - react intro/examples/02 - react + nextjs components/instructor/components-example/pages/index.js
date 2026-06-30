@@ -8,6 +8,7 @@ import styles from "@/styles/Home.module.css";
 // my components
 import Hello from '@/components/Hello';
 import NewConcept from '@/components/NewConcept';
+import Container from '@/components/Container';
 // @ is the project root (see: jsonfig.json), so we don't have to write long annoying import paths
 
 
@@ -35,10 +36,12 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
-          <Hello />
-          <NewConcept concept="creating and using components" />
-          <NewConcept concept="destructuring objects" />
-          <NewConcept concept="next.js and what it bundles & does" />     
+          <Container>
+            <Hello />
+            <NewConcept concept="creating and using components" />
+            <NewConcept concept="destructuring objects" />
+            <NewConcept concept="next.js and what it bundles & does" />
+          </Container>
         </main>
       </div>
     </>
