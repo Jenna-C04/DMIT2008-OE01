@@ -4,6 +4,7 @@
 import { useState } from 'react';
 
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function TodoList() {
 
@@ -17,15 +18,27 @@ export default function TodoList() {
     setTodoItem(event.target.value)
   }
 
+  const onAddTodoClick = () => {
+    console.log("clicked!")
+  }
+
   return (
-    <TextField
-      id="standard-basic"
-      label="New todo item"
-      variant="standard"
-      sx={{ width: '100%' }}
-      value={todoItem}
-      onChange={onTodoTextChange}
-    />
+    <>
+      <TextField
+        id="standard-basic"
+        label="New todo item"
+        variant="standard"
+        sx={{ width: '75%' }}
+        value={todoItem}
+        onChange={onTodoTextChange}
+      />
+      <Button
+        variant="contained"
+        onClick={onAddTodoClick}
+      >
+        Add Todo Item
+      </Button>
+    </>
   )
 
 }
