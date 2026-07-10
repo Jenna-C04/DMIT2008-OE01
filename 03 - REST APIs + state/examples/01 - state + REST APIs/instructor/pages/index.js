@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -12,6 +14,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 export default function Home() {
+
+  const [quoteData, setQuoteData] = useState(
+    {
+      quote: "Quote here.",
+      author: "Author here",
+    }
+  )
 
 
   return (
@@ -42,7 +51,7 @@ export default function Home() {
             }}
           >
             <Typography variant="h5" align="center" color="text.primary" paragraph>
-              Quote here.
+              {quoteData.quote}
             </Typography>
             <Typography
               component="h1"
@@ -51,7 +60,7 @@ export default function Home() {
               color="text.secondary"
               gutterBottom
             >
-              Author here
+              {quoteData.author}
             </Typography>
             <Box
              display="flex"
