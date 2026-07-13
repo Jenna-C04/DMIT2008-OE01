@@ -13,6 +13,11 @@ import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+// let's pretend we have some data that is scoped externally from the component,
+// just like incoming REST API data would be!
+const newData = { quote: "You can't just make up quotes", author: "Oscar Wilde", }
+
+
 export default function Home() {
 
   const [quoteData, setQuoteData] = useState(
@@ -22,6 +27,9 @@ export default function Home() {
     }
   )
 
+  const getQuote = () => {
+    setQuoteData(newData);
+  }
 
   return (
     <div>
@@ -69,6 +77,7 @@ export default function Home() {
             >
               <Button
                 variant="contained"
+                onClick={getQuote}
               >
                 Get New Quote
               </Button>
