@@ -37,16 +37,17 @@ import Typography from '@mui/material/Typography';
     4. bonus: some other fun logic we can do + UI touchups
 */
 
+
 export default function Home() {
 
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     comment: "",
     rating: 1,
   })
 
-  const handleSubmit = (e) => {
+  const addReview = (e) => {
     e.preventDefault();
 
     // let's start by POSTing the new review to the API
@@ -60,10 +61,29 @@ export default function Home() {
     }).then((response)=> {
       return response.json()
     }).then((data)=> {
-      console.log(data)
+      // option 1 for automating reload-on-submit:
+      // Wait for new review to successfully POST to API,
+      // then reload *all* reviews.
+      getReviews();
+
+      /* option 2 would be, instead: "I'm going to add the new form data to
+         to my local reviews array & re-render the component, and *separately*
+         POST to the API — bad! now you have no guarantee that your presentation data
+         is the same as the actual data.
+      */ 
     });
 
     setFormData({ title: "", comment: "", rating: 1});
+  }
+
+  const getReviews = () => {
+    fetch(`http://localhost:5000/reviews`)
+    .then((response)=> {
+      return response.json()
+    }).then((data)=> {
+      console.log("refetched reviews.");
+      setReviews(data);
+    });
   }
 
   return (
@@ -82,9 +102,7 @@ export default function Home() {
       </AppBar>
       <main>
         <Container maxWidth="md">
-          <form
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={addReview}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={12}>
                 <TextField
@@ -149,6 +167,7 @@ export default function Home() {
           >
             <Button
               variant="contained"
+              onClick={getReviews}
             >
               Load All Current Reviews
             </Button>
