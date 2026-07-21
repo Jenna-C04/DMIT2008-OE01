@@ -14,7 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 export default function Home() {
-  const RANDOM_QUOTE_URL = 'https://api.quotable.io/random'
+  const RANDOM_QUOTE_URL = 'https://dummyjson.com/quotes/random'
   const [quoteData, setQuoteData] = useState({
     quote: "Quote here.",
     author: "Author here"
@@ -26,13 +26,10 @@ export default function Home() {
         return response.json()
       }).then((data)=> {
         setQuoteData({
-          quote: data.content,
+          quote: data.quote,
           author: data.author
         })
-      })
-
-
-    
+      })  
   }
 
   return (
