@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 import Head from 'next/head'
 import Image from 'next/image'
@@ -14,6 +14,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 export default function Home() {
+  console.log("Home component, line 1")
+
   const RANDOM_QUOTE_URL = 'https://api.quotable.io/random'
   const [quoteData, setQuoteData] = useState({
     quote: "Quote here.",
@@ -31,7 +33,22 @@ export default function Home() {
         })
       })
 
+      // 1. fire effect on compnent mount (very often, "on page load")
+      useEffect(
+        () => {
+          console.log("componet has mounted, effect fired on mount")
+        }, 
+        // param 1 the call back function that should run when the effect fires
+        []    //param 2: the dependency array (empty array = fire when compnet mounts)
+      )
 
+      // 2. fire effect on state change
+
+      // 3. evil condition you shouldn't do
+      useEffect(
+        ()=> { console.log ("quote was changed")},
+        [quoteData] // when dependency array contains things(for now, lets preten thats just state)
+      )
     
   }
 
